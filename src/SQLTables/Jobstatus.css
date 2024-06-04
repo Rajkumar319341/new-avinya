@@ -1,0 +1,10 @@
+.box12 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+}
+
+.card-job12 {
+    width: calc(25% - 20px); 
+    margin: 10px; 
+}

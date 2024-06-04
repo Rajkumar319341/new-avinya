@@ -1,0 +1,44 @@
+
+@media (min-width:1200px){
+    .paper-container-jobapply{
+        width: 350px;
+        margin-left: 27rem;
+        padding: 2rem;
+        margin-top: 2rem;
+    }
+    
+}
+
+.job_apply_container{
+    background: linear-gradient(180deg, #e7e7f1 .62%, rgba(231, 231, 241, 0) 95.76%);
+}
+
+@media (max-width:1200px){
+    .paper-container-jobapply{
+        width: fit-content;
+        /* margin-left: 16rem; */
+        padding: 2rem;
+    }
+    
+
+}
+
+.submit_Button {
+    font-family: Satoshi, sans-serif;
+    background-color: rgb(20, 153, 230);
+    color: #fff;
+    text-transform: none;
+    width: 8rem;
+    border-radius: 40px;
+    font-size: medium;
+    padding: 10px 14px;
+    border: none;
+    cursor: pointer;
+    border: 1px solid var(--P100);
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .submit_Button:hover {
+    background-color: rgb(17, 126, 191);
+  }
+  

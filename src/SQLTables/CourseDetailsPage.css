@@ -1,0 +1,105 @@
+
+.courseDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(180deg, #e7e7f1 .62%, rgba(231, 231, 241, 0) 95.76%);
+  padding: 20px;
+}
+
+.courseTitle {
+  font-family: 'Roboto Slab', sans-serif;
+  margin-bottom: 20px;
+}
+
+.courseCard {
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 40px;
+
+}
+
+.courseDescription {
+  padding: 20px;
+  columns: #353a50;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 400;
+  border:1px solid #c7c9d6;
+
+
+}
+
+.course_details_upper{
+  width: 45%;
+  padding: 20px;
+  /* border: 2px solid #05101b;  */
+  /* border: 1px solid #05101b; */
+  border-radius: 40px;
+  box-shadow: 0 6px 12px rgba(30,10,58,.04);
+  
+  box-sizing: border-box;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 400;
+  background-color: #fefeff;
+  /* background: linear-gradient(to bottom, #c0e2f8 0%, #e6ffff 100%); */
+}
+
+.course_details_page{
+  padding: 20px;
+  background-color: #fefeff;
+  font-size: 18px;
+  width: 45%;
+  line-height: 1.5;
+  font-weight: 400;
+  border:1px solid #c7c9d6;
+  border-radius: 40px;
+  box-shadow: 0 6px 12px rgba(30,10,58,.04);
+}
+
+.applyButton {
+  margin-top: 20px;
+  width: 7rem;
+  font-family: Satoshi, sans-serif;
+    background-color:rgb(20, 153, 230);
+    color: #fff;
+    text-transform: none;
+    width: 5rem;
+    border-radius: 40px;
+    padding: 10px 14px;
+    border: none;
+    cursor: pointer;
+    border: 1px solid var(--P100);
+
+ 
+}
+@media (max-width:1200px){
+  .course_details_upper{
+    width: 100%;
+    padding: 20px;
+    /* border: 2px solid #05101b;  */
+    /* border: 1px solid #05101b; */
+    border-radius: 40px;
+    box-shadow: 0 6px 12px rgba(30,10,58,.04);
+    
+    box-sizing: border-box;
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 400;
+    background-color: #fefeff;
+    /* background: linear-gradient(to bottom, #c0e2f8 0%, #e6ffff 100%); */
+  }
+
+  .course_details_page{
+    padding: 20px;
+    background-color: #fefeff;
+    font-size: 18px;
+    width: 100%;
+    line-height: 1.5;
+    font-weight: 400;
+    border:1px solid #c7c9d6;
+    border-radius: 40px;
+    box-shadow: 0 6px 12px rgba(30,10,58,.04);
+  }
+}

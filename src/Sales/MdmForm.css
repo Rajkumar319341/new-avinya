@@ -1,0 +1,23 @@
+
+.workshop_root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 1rem;
+  margin-top: 200px; /* Add some margin to create space between navbar and content */
+}
+  
+  @media (max-width:1200px){
+    .workshop_root{
+        height: 100vh;
+       
+    }
+  }
+  @media (max-width:768px){
+    .workshop_root{
+        height: 100vh;
+      
+    }
+  }
+  

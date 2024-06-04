@@ -1,0 +1,139 @@
+
+:root {
+    --id_theme_colour: #004bac;
+    /* --id_theme_colour: #008037; */
+    --green: #008037;
+    --bgColour: #008037;
+
+    /* --bgColour: #004bac; */
+  }
+.idcard_font{
+    height: 375px;
+    width: 250px;
+    position: relative;
+    border-radius: 10px;
+    color: var(--id_theme_colour);
+}
+
+.idcard_top{
+    height: 30%;
+    width: 100%;
+    background-color: #fff;
+    position: relative;
+    z-index: 5;
+    /* border-top-left-radius: 15px;
+    border-top-right-radius: 15px; */
+}
+
+.idcard_bottom{
+    height: 50%;
+    width: 100%;
+    background-color: #fff;
+
+}
+
+.idcard_top_img{
+    height: 100px;
+    width: 100px;
+    background-color: #e6ebe0;
+    border-radius: 60px;
+    border:5px solid var(--bgColour);
+    position: absolute;
+    top:60px;
+    left: 75px;
+}
+.idcard_bottom p{
+    position: relative;
+    top: 60px;
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 20px;
+    text-emphasis: spacing;
+}
+.idcard_bottom .idcard_desi{
+    font-size:12px;
+    color: var(--id_theme_colour);
+    font-weight: normal;
+    padding-bottom: 4px;
+}
+.idcard_bottom .idcard_no{
+    font-size: 15px;
+    font-weight: normal;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 2px;
+}
+.idcard_barcode img
+{
+    height: 65px;
+    width: 65px;
+    text-align: center;
+    margin: 5px;
+}
+.idcard_barcode{
+    text-align: center;
+    position: relative;
+    top: 70px;
+}
+.idcard_Footer{
+    background-color: var(--bgColour);
+    color: #fff;
+    bottom: 0%;
+
+}
+.director_Sign{
+    position: relative;
+    text-align: end;
+    background-color: #fff;
+}
+.qrDisplay{
+    position: relative;
+    text-align: center;
+    background-color: #fff;
+    padding-right: 35px;
+}
+.idcard_directorImage{
+    position: absolute;
+    text-align: center;
+    bottom: 10%;
+    /* left: 0; */
+    right: 0;
+    font-size: x-small;
+    /* background-color: var(--bgColour); */
+    
+}
+
+.idcard_Address{
+
+text-align: center;
+margin-top: 2%;
+}
+.id_footer{
+    position: absolute;
+    bottom: 0.1%;
+  
+    background-color: var(--bgColour);
+    /* border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px; */
+}
+
+
+@media screen and (max-width:400px)
+{
+    .idcard_container{
+        height: 130vh;
+    }
+    .idcard_container .idcard_front{
+        margin-top: 50px;
+    }
+}
+@media screen and (max-width:600px)
+{
+    .idcard_container{
+        height: 130vh;
+    }
+    .idcard_container .idcard_front{
+        margin-top: 50px;
+    }
+
+}

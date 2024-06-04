@@ -1,0 +1,139 @@
+$border_color: #004bac;
+// $box_shadow_color: #ec8635;
+// $box_shadow_color: linear-gradient(62deg, #f7ce68 10%, #ec8635 100%);
+$box_shadow_color: linear-gradient(90deg, hsla(214, 100%, 34%, 1) 0%,
+ hsla(214, 100%, 34%, 1) 41%,
+ hsla(194, 85%, 29%, 1) 51%,
+ hsla(163, 74%, 30%, 1) 68%,
+ hsla(113, 80%, 44%, 1) 100%);
+
+.vertical-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// meat of the matter
+
+.row {
+  display: flex;
+  width: 100%;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.calendar {
+  display: block;
+  background: white;
+  // width: 300px;
+  // width: 90%;
+  // width: 99%;
+  border: solid 1px $border_color;
+  // margin: 10px auto;
+  font-size: 1.3rem;
+  text-align: center;
+  border-radius: 10px;
+  height: 300px;
+
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: default;
+    font-size: 1.4rem;
+    display: block;
+    font-weight: bold;
+    text-transform: uppercase;
+    user-select: none;
+
+    .month-display {
+      align-items: center;
+      height: 40px;
+      background-image: $box_shadow_color;
+    }
+
+    .month-label {
+      flex: 1;
+    }
+
+    .arrow {
+      text-align: center;
+      flex-basis: 15%;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        background: black;
+      }
+    }
+  }
+
+  .week {
+    border-top: solid 1px $box_shadow_color;
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+
+  .day-names {
+    color: black;
+    font-weight: bold;
+    cursor: default;
+    font-size: 1.2rem;
+
+    .day {
+      cursor: default;
+
+      &:hover {
+        background: inherit;
+      }
+    }
+  }
+
+  .day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    height: 35px;
+    border-left: solid 1px $box_shadow_color;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      background: $box_shadow_color;
+    }
+
+    &:first-child {
+      border-left: none;
+    }
+
+    &.today {
+      background: $box_shadow_color;
+    }
+
+    &.different-month {
+      color: gray;
+    }
+
+    &.selected {
+      background: $box_shadow_color;
+      color: white;
+    }
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .calendar {
+    margin: 0px;
+    // width: 90%;
+  }
+}
+
+

@@ -1,0 +1,217 @@
+:root {
+    --blue_color: #1e90ff;
+    --light_blue:#07a8ff;
+    --white_color: #ffffff;
+    --golden_color:gold;
+    --green_color:green;
+    --light_green:#008037;
+    --chinese_silver:#ccc;
+    --orange:#ff5800;
+    --light_brown:#545050;
+    --red_color:#ff1800;
+    --lavender_color:lavender;
+    --light_black:#080808;
+    --light_white:#d8f1ff;
+    --dark_black:#000000;
+    --gray_14:#242424;
+    --bluish_black: #252e48;
+    --cement_gray:#b1b1b1;
+  
+  }
+  .navbar {
+    background: linear-gradient(90deg,#008037,#004bac );
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    padding-left: 0px;
+  }
+  
+  .responsive {
+    width: 100%;
+    height: auto;
+  }
+  
+  img{
+    height: 50%;
+    width: 50%;
+  }
+  .navbar-logo img{
+    padding-left: 0px;
+    height:80px;
+    width:100%;
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    max-width: 5000px;
+    /* overflow:hidden; */
+  }
+  .navbar-logo-text{
+    width:150px;
+    color: var(--white_color);
+    font-weight: bolder;
+    font-size: larger;
+    float:left;
+    position: absolute;
+    top: 20px;
+    left:130px;
+  }
+  
+  .navbar-logo {
+    color:var(--white_color);
+    justify-self: start;
+    margin-left: 0px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+    padding-left: 30px;
+    float: left;
+    position: absolute;
+    top: 0;
+    left:0;
+  }
+  
+  /* .fa-typo3 {
+    margin-left: 0.5rem;
+    font-size: 1.8rem;
+  } */
+  
+  .nav-menu {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 10px;
+    list-style: none;
+    text-align: center;
+    width: 60vw;
+    justify-content: end;
+    margin-right: 2rem;
+    padding-bottom: 30px;
+    position: absolute;
+    right:0;
+  }
+  
+  
+  
+  .nav-item {
+    height: 110px;
+    align-items: center;
+    position: relative;
+    
+  }
+  
+  .nav-dropdown-item {
+    height: 80px;
+    width:100px;
+    /* background-color: ; */
+    padding-top: 24px;;
+    
+  }
+  .dropdown-item{
+    width:60px;
+    background:var(--white_color);
+    text-align:left;
+  }
+  
+  .nav-links {
+    color:var(--white_color);
+    display: flex;
+    align-items: center;
+    position: relative;
+    text-decoration: none;
+    padding: 2rem 1rem;
+    padding-top: 50px;
+    height: 100%;
+  }
+  
+  .nav-links:hover {
+    border-bottom: 4px solidvar(--white_color);
+    transition: all 0.2s ease-out;
+  }
+  
+  .fa-bars {
+    color: var(--white_color);
+  }
+  
+  .nav-links-mobile {
+    display: none;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  @media screen and (max-width: 960px) {
+    .NavbarItems {
+      align-items: center;
+      position: relative;
+    }
+  
+    .nav-menu {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      /* height: 40vh; */
+      position: absolute;
+      top: 80px;
+      left: -100%;
+      opacity: 1;
+      transition: all 0.5s ease;
+    }
+  
+    .nav-menu.active {
+      background: var(--blue_color);
+      left: 0;
+      opacity: 1;
+      transition: all 0.5s ease;
+      z-index: 1;
+      /* animation-direction:reverse ; */
+    }
+  
+    .nav-links {
+      text-align: center;
+      width: 100%;
+      display: table;
+      /* float: none; */
+      
+    }
+  
+    .nav-links:hover {
+      background-color: var(--white_color);
+      color:var(--light_black);
+      border-radius: 0;
+    }
+  
+    .navbar-logo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      /* transform: translate(25%, 50%); */
+    }
+  
+    .menu-icon {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(-100%, 60%);
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+  
+    .fa-times {
+      color:var(--white_color);
+      font-size: 2rem;
+    }
+  }
+  

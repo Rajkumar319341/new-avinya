@@ -1,0 +1,22 @@
+/* .card-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+} */
+
+@media only screen and (max-width: 680px) {
+    .card {
+      width: 9.5rem;
+      flex-grow: 0.7;
+    }
+    button{
+      width: 9rem;
+      height:3rem
+    }
+    input{
+      width: 15rem;
+    }
+    .assetButton{
+      width: 12.5rem;
+    }
+  }

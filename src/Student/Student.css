@@ -1,0 +1,194 @@
+:root {
+  --theme_colour: #004bac;
+  --green: #2bc916;
+}
+
+body {
+  /* background-image: url(./Images/about1.jpg);
+  background-repeat: no-repeat; */
+  background-color: white;
+}
+
+.student-profile .card {
+  border-radius: 10px;
+}
+
+.profile_img {
+  width: 150px;
+  height: 150px;
+  border: 10px solid var(--theme_colour);
+  border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.card-header {
+  width: 400px;
+  align-items: center;
+  border-radius: 20px;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.bringitcenter {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card {
+  margin-left: auto;
+  margin-right: auto;
+  margin: 20px;
+}
+
+.student-profile .card h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.student-profile .card p {
+  font-size: 16px;
+  color: #000;
+}
+
+.student-profile .table th,
+.student-profile .table td {
+  font-size: 14px;
+  padding: 5px 10px;
+  color: #000;
+}
+
+.student-image-holder {
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.student-carrybox {
+  padding: 10px;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  height: fit-content;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input,
+select {
+  padding: 12px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 4px;
+  resize: vertical;
+  display: inline;
+  height: 45px;
+}
+
+.inputtestarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-weight: bold;
+  resize: vertical;
+  display: inline;
+  color: rgb(128, 128, 128);
+  height: 135px;
+}
+input:active,
+select:active,
+.inputtestarea:active {
+  border: 2px solid var(--theme_colour);
+  color: var(--theme_colour);
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type="submit"]:hover {
+  background-color: #56c55c;
+}
+
+.col-25 {
+  float: left;
+  width: 100%;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+  display: inline;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.student-part2 {
+  width: 100%;
+}
+.studentprofile,
+.changepassword,
+.adminChangePassword .addjobs {
+  width: 70%;
+  padding: 10px;
+  margin: 20px;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(255, 255, 255, 0.596);
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.floatleft {
+  display: inline;
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+.floatright {
+  display: inline;
+  float: right;
+  width: 50%;
+  padding: 10px;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25,
+  .col-75,
+  .student-part2,
+  .student-carrybox,
+  .studentprofile,
+  .student-content-holder,
+  .adminChangePassword {
+    width: 100%;
+  }
+  .floatright,
+  .floatleft {
+    width: 100%;
+    display: block;
+  }
+  .card-header {
+    width: 100%;
+  }
+}
+
+.Submitbutton {
+  background-color: var(--theme_colour);
+  padding: 10px;
+  border: none;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 15px;
+  width: 100%;
+}

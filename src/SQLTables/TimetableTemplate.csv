@@ -1,0 +1,4 @@
+id,day,subject,facultyname,course,createdDate,time,action
+260,Mon,Mathematics,slrishi_kumar,Grade 10,19/07/2022,17:0 - 18:15,update 
+261,Mon,Social Science,slsathyaraj_anand,Grade 10,19/07/2022,18:15 - 19:30,delete
+262,Tue,Science,slsathyaraj_anand,Grade 10,19/07/2022,17:0 - 18:15,

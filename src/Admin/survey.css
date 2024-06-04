@@ -1,0 +1,95 @@
+/* survey.css */
+
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.survey-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: rgb(106, 195, 251);
+}
+
+.App {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    /* You can adjust this width as needed */
+    max-height: 80vh;
+    /* Set the maximum height to make it scrollable */
+    overflow: auto;
+    /* Enable scrolling when content exceeds the maximum height */
+}
+
+.title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    padding-top: 20px;
+    background: rgb(106, 195, 251);
+}
+
+/* .option-buttons {
+    display: flex;
+    justify-content: space-between;
+  } */
+
+.survey-input-box {
+    /* Other styles... */
+    border: 1px solid #ccc;
+    /* Add border style */
+    border-radius: 4px;
+    /* Add border radius */
+    padding: 8px;
+    /* Add padding */
+}
+
+.question {
+    border: 2px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.question label {
+    font-weight: bold;
+}
+
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-top: 8px;
+}
+
+li label {
+    display: block;
+    color: #333;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,30 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  
+  /* .react-kanban-board {
+    height: 75vh;
+  } */
+  
+  .react-kanban-column-header {
+    color: #0B7285;
+    text-align: center;
+    height: 1.5rem;
+    background-color: antiquewhite;
+    border-radius: 4px;
+    margin-bottom: 1.2rem;
+    width: 100%;
+    /* font-size: 0.8rem; */
+  }
+  .react-kanban-column{
+    width: 14.2rem;
+    background-color: rgb(155, 227, 255);
+    border-radius: 5px;
+    margin: 0 0.7rem;
+  }
+  
+  .description-text {
+    font-size: 12px;
+  }
+  

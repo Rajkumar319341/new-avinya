@@ -1,0 +1,25 @@
+
+.workshop_root{
+    /* background-color: rgb(145, 211, 241); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    /* height: 100vh; */
+    padding: 1rem;
+}
+
+@media (min-width:1200px){
+    .workshop_root{
+        height: fit-content;
+        /* background-color: rgb(145, 211, 241); */
+
+    }
+}
+@media (min-width:768px){
+    .workshop_root{
+        height: 100vh;
+        /* background-color: rgb(145, 211, 241); */
+
+    }
+}
