@@ -8,35 +8,35 @@ import 'react-toastify/dist/ReactToastify.css';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import PhoneIcon from '@material-ui/icons/Phone';
-import './JobApplyPage.css';
-// import { useHistory } from 'react-router-dom';
 
-const JobApplyPage = (props) => {
-  // const history = useHistory(); 
 
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const { jobId, Role,branch,designation,department} = props.location.state;
+export const InternalJobApply = (props) => {
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [phone, setPhone] = useState('');
+
+    const { jobId, Role,branch,designation,department} = props.location.state;
   console.log(jobId, Role);
 
   useEffect(() => {
     const sessionDetails = JSON.parse(localStorage.getItem('sessiondetails'));
     
-    if (sessionDetails && sessionDetails.userType === 'user') {
+    if (sessionDetails) {
       setEmail(sessionDetails.email);
       setName(sessionDetails.user);
       setPhone(sessionDetails.phoneNumber);
     }
   }, []);
 
-  const handleSubmit = async (e) => {
+
+    const handleSubmit = async (e) => {
     e.preventDefault();
     const sessionDetails = JSON.parse(localStorage.getItem('sessiondetails'));
-    const enrollmentType = sessionDetails && sessionDetails.userType === "employee" ? "admin" : "employee";
+    const enrollmentType = sessionDetails && sessionDetails.userType === "employee" ? "employee" : "employee";
 
     if (!email || !name || !phone) {
       toast('All fields are required');
+
       return;
     }
 
@@ -64,8 +64,8 @@ const JobApplyPage = (props) => {
       job_id:jobId,
       enrolled_date:datetime,
       enrollment_status: "applied",
-      prevDeptSupervisor:'NA',
-      release_status:'NA',
+      prevDeptSupervisor:'suresh.h@care4edu.com',
+      release_status:'PENDING',
       enrollment_type: enrollmentType,
       followup_datetime: datetime,
       office_email:'',
@@ -88,8 +88,7 @@ const JobApplyPage = (props) => {
         localStorage.setItem('email', email);
         localStorage.setItem('name', name);
         localStorage.setItem('phone', phone);
-        // history.push('/ApplyJobData');
-        // window.location.reload();
+        
 
       } else {
         toast(response.data.errorDesc);
@@ -100,7 +99,10 @@ const JobApplyPage = (props) => {
     }
   };
 
-  return (<div  className='job_apply_container'>
+
+    return (
+    
+    <div  className='job_apply_container'>
 
   
     <Container >
@@ -180,5 +182,3 @@ const JobApplyPage = (props) => {
     </div>
   );
 };
-
-export default JobApplyPage;

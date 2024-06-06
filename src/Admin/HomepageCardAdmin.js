@@ -110,9 +110,6 @@ closeForm = () =>{
                 ideal={100}
                 max={150}
                 readMoreText="...read more"/>
-
-               
- 
             </li>
             );
           })

@@ -404,6 +404,13 @@ let TechSidebar = [
       cName: "nav-text01",
       child: "",
    },
+   {
+      title: "Internal Jobs",
+      path: "/internal-job",
+      icon: <MdIcons.MdDashboard />,
+      cName: "nav-text01",
+      child: "",
+   },
 
    // {
    //    title: "Questions",
@@ -2050,13 +2057,20 @@ let SuperAdminSidebar = [
    //    cName: "nav-text01",
    //    child: "",
    // },
-   // {
-   //    title: "Dashboard Details",
-   //    path: "/dashboard-details",
-   //    icon: <MdIcons.MdDashboard />,
-   //    cName: "nav-text01",
-   //    child: "",
-   // },
+   {
+      title: "Dashboard Details",
+      path: "/dashboard-details",
+      icon: <MdIcons.MdDashboard />,
+      cName: "nav-text01",
+      child: "",
+   },
+   {
+      title: "Internal Jobs",
+      path: "/internal-job",
+      icon: <MdIcons.MdDashboard />,
+      cName: "nav-text01",
+      child: "",
+   },
 
    {
       title: "Questions",

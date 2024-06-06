@@ -19,12 +19,6 @@ function Card({ item }) {
         <p>Job Type: {item.job_type}</p>
         <p>Salary: {item.salary}</p>
         <p>Job Tenure:{item.job_tenure}</p>
-
-      {/* <h4>Job ID: {item.job_id}</h4>
-      <p>Job Type: {item.job_type}</p>
-      <p>Job Sub Type: {item.job_dept}</p>
-      <p>Salary: {item.salary}</p>
-      <p>Job Tenure: {item.job_tenure}</p> */}
      
       <br></br>
       <Link to={{ pathname: `/job_id/${item.job_id}`, state: { item } }}>Know More </Link>

@@ -361,7 +361,7 @@ class EnrollmentsData extends Component {
                             </Typography>
                           </TableCell>
                           <>
-                            {sessiondetails !== null && fetchedPrivileges && (
+                            {sessiondetails !== null && fetchedPrivileges || ( sessiondetails.userType==="superadmin" )&&(
                               <>
                                 {(fetchedPrivileges === "1111" || fetchedPrivileges === "1110") && (
                                   <TableCell className={classes.tableCell}>

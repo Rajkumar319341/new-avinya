@@ -9,7 +9,7 @@ import "../App.css";
 import ReadMoreReact from 'read-more-react';
 import UpdateHomepageCards from './AddComponents/UpdateHomepageCards';
 import * as AiIcons from "react-icons/ai";
-
+ 
 const sessiondetails = JSON.parse(localStorage.getItem("sessiondetails"));
 class SuperAdminHomePageCard extends Component {
   constructor(props){
@@ -24,18 +24,18 @@ class SuperAdminHomePageCard extends Component {
     const url = APIData.api +`org-placeholder/details?org=${org}`;
     const response = await fetch(url, { headers: APIData.headers });
     const jsonResponse = await response.json();
-    this.setState({ data: jsonResponse }); 
+    this.setState({ data: jsonResponse });
   }
  
-
+ 
   handleInput(val) {
     console.log(val)
     this.setState({name: val})
     this.setState({condition: (!this.state.condition)})
     console.log(this.state.condition)
-    
+   
 }
-
+ 
 closeForm = () =>{
     this.setState({condition: (!this.state.condition)})
 }
@@ -61,7 +61,7 @@ deleteCard(val) {
     <div>
             <Link to="/upload-image">
             <div className="Upload01">
-              Create Card 
+              Create Card
               <AiIcons.AiOutlinePlusCircle />
             </div>
           </Link>
@@ -82,7 +82,7 @@ deleteCard(val) {
               <figure>
                 <img src={item.placeholderImage} alt="IMAGES" />
               </figure>
-
+ 
               <ReadMoreReact text={item.placeholderDesc}
                 min={0}
                 ideal={100}
@@ -92,16 +92,15 @@ deleteCard(val) {
             );
           })
         }
-        </ul>     
+        </ul>    
     </div></div>
     :<div>
     <AiIcons.AiFillCloseCircle onClick={this.closeForm}/>
         <UpdateHomepageCards data={this.state.name}/>
     </div>}
-    </div>   
+    </div>  
     );
   }
 }
-
+ 
 export default SuperAdminHomePageCard;
-

@@ -149,7 +149,7 @@ class SignUp extends Component {
     toast("Please Wait For The Otp");
     console.log(this.state.user_email)
     axios
-      .get(APIData.api + "users/otp/detail?emailId=" + this.state.user_email, {
+      .get(APIData.api + "users/otp/detail?emailId=" + this.state.user_email+`&org=${org}`, {
         headers: APIData.headers,
       })
       .then((response) => {

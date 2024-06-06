@@ -1,49 +1,33 @@
-import React from "react";
-import * as AiIcons from "react-icons/ai";
-import * as IoIcons from "react-icons/io";
-import { IconContext } from "react-icons";
-import * as MdIcons from "react-icons/md";
+
 import AboutUsImg from "./DashboardImages/AboutUs1.jpg";
 import HomeImg from "./DashboardImages/Home1.jpg";
-import CoursesImg from "./DashboardImages/Courses2.jpg";
 import JobsImg from "./DashboardImages/Jobs1.jpg";
 import ContactUsImg from "./DashboardImages/ContactUs.jpg";
-import MembersImg from "./DashboardImages/Members.jpg";
 import AdminImg from "./DashboardImages/Admin.jpg";
-import FacultiesImg from "./DashboardImages/Faculties.jpg";
-import MemberStatusImg from "./DashboardImages/MemberStatus.jpg";
 import StudentsImg from "./DashboardImages/Students.jpg";
-import UsersImg from "./DashboardImages/Users.jpg";
 import EmployeeImg from "./DashboardImages/Employee.jpg";
-import MyAccountImg from "./DashboardImages/MyAccount.jpg";
-
 import ChangePasswordImg from "./DashboardImages/Password1.jpg";
-import ClassroomImg from "./DashboardImages/Classroom.jpg";
 import CoursesEnrolledImg from "./DashboardImages/CoursesEnrolled.jpg";
 import MarksImg from "./DashboardImages/Marks3.jpg";
 import TimeTablesImg from "./DashboardImages/TimeTable.jpg";
-import FilesImg from "./DashboardImages/Files1.jpg";
 import DocumentsImg from "./DashboardImages/Documents.jpg";
 import OfficeDocumentsImg from "./DashboardImages/OfficeDocuments.jpg";
 import EnrollmentsImg from "./DashboardImages/Enrollments.jpg";
-import AppliedImg from "./DashboardImages/Applied1.jpg";
-import AcceptedImg from "./DashboardImages/Enrollments1.jpg";
-import CompletedImg from "./DashboardImages/Completed.jpg";
-import FinanceImg from "./DashboardImages/Finance.jpg";
 import ExpensesImg from "./DashboardImages/Expenses1.jpg";
 import InvoiceImg from "./DashboardImages/Invoice.jpg";
 import AssetsImg from "./DashboardImages/assets.jpg";
 import QueriesImg from "./DashboardImages/queries.jpg";
 import ApplyForAdminImg from "./DashboardImages/Applyforadmin.jpg";
 import PerformanceGraphImg from "./DashboardImages/PerformanceGraph1.jpg";
-import FailedRegUsersImg from "./DashboardImages/Failed.jpg";
 import ServerStatsImg from "./DashboardImages/ServerStats.jpg";
 import Courses3Img from "./DashboardImages/Courses3.jpg";
 import ProfileImg from "./DashboardImages/Profile1.jpg";
 import PolicyImg from './DashboardImages/Policy.jpg';
 
-//import *
+
 var sessiondetails = JSON.parse(localStorage.getItem("sessiondetails"));
+
+
 function GetSortOrder(prop) {
   return function (a, b) {
     if (a[prop] > b[prop]) {
@@ -54,6 +38,7 @@ function GetSortOrder(prop) {
     return 0;
   };
 }
+
 let Data = [];
 
 if (sessiondetails == null) {
@@ -113,42 +98,7 @@ let AdminDashboard = [
 
     image: PolicyImg,
   },
-  // {
-  //   title: "Admins",
-  //   path: "/admins",
-
-  //   image: MembersImg,
-  // },
-  // {
-  //   title: "Faculties",
-  //   path: "/faculty",
-
-  //   image: FacultiesImg,
-  // },
-  // {
-  //   title: "Member Status",
-  //   path: "/membersStatus",
-
-  //   image: MemberStatusImg,
-  // },
-  // {
-  //   title: "Students",
-  //   path: "/students",
-
-  //   image: StudentsImg,
-  // },
-  // {
-  //   title: "Users",
-  //   path: "/user",
-
-  //   image: UsersImg,
-  // },
-
-  // {
-  //   title: "Jobs",
-
-  //   image: JobsImg,
-  // },
+ 
   {
     title: "Admin Jobs",
     path: "/adminJobs",
@@ -161,23 +111,13 @@ let AdminDashboard = [
     image: EmployeeImg,
   },
 
-  // {
-  //   title: "My Account",
-
-  //   image: MyAccountImg,
-  // },
   {
     title: "Profile",
     path: "/adminprofile",
 
     image: ProfileImg,
   },
-  // {
-  //   title: "Change Password",
-  //   path: "/ChangePassword",
 
-  //   image: ChangePasswordImg,
-  // },
 
   {
     title: "Courses",
@@ -186,12 +126,7 @@ let AdminDashboard = [
     image: Courses3Img,
   },
 
-  // {
-  //   title: "Courses Enrolled",
-  //   path: "/adminCourseEnrolled",
-
-  //   image: CoursesEnrolledImg,
-  // },
+ 
   {
     title: "Marks",
     path: "/marks",
@@ -224,30 +159,7 @@ let AdminDashboard = [
 
     image: EnrollmentsImg,
   },
-  // {
-  //   title: "Enrollments Applied",
-  //   path: "/EnrollmentsApplied",
-
-  //   image: AppliedImg,
-  // },
-  // {
-  //   title: "Enrollments Accepted",
-  //   path: "/enrollmentsAccepted",
-
-  //   image: AcceptedImg,
-  // },
-  // {
-  //   title: "Enrollments Completed",
-  //   path: "/enrollmentsCompleted",
-
-  //   image: CompletedImg,
-  // },
-
-  // {
-  //     title: "Finance",
-
-  //     image: '',
-  // },
+  
   {
     title: "Expenses",
     path: "/adminExpenseAPI",
@@ -283,12 +195,7 @@ let FacultyDashboard = [
 
     image: "",
   },
-  // {
-  //   title: "Apply For Admin",
-  //   path: "/facultyadminjob",
 
-  //   image: ApplyForAdminImg,
-  // },
   {
     title: "Store",
     path: "/assets",
@@ -301,11 +208,7 @@ let FacultyDashboard = [
 
     image: PolicyImg,
   },
-  // {
-  //   title: "My Account",
-
-  //   image: MyAccountImg,
-  // },
+  
   {
     title: "Profile",
     path: "/facultyProfile",
@@ -319,11 +222,6 @@ let FacultyDashboard = [
     image: ChangePasswordImg,
   },
 
-  // {
-  //     title: "Classroom",
-
-  //     image: '',
-  // },
   {
     title: "Marks",
     path: "/facultyMarks",
@@ -348,11 +246,7 @@ let FacultyDashboard = [
     image: CoursesEnrolledImg,
   },
 
-  // {
-  //     title: "Files",
-
-  //     image: '',
-  // },
+  
   {
     title: "Documents",
     path: "/facultydocuments",
@@ -377,11 +271,7 @@ let StudentDashboard = [
 
     image: "",
   },
-  // {
-  //   title: "My Account",
-
-  //   image: MyAccountImg,
-  // },
+  
   {
     title: "Profile",
     path: "/studentProfile",

@@ -190,7 +190,7 @@ const CreateJob = () => {
                                 </Grid>
                             </FormGroup>
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} style={{textAlign:"center"}}>
                             <Button variant="contained" color="primary" onClick={() => {
                                 if (handleValidation()) {
                                     handleSubmit();

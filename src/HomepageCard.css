@@ -6,5 +6,52 @@
 }
 .homepage_card img {
     border: none;
-    
   }
+
+  
+.custom-grid-container {
+    margin: 20px; 
+  }
+  
+  .custom-grid-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .solidcam-pd-container {
+    padding: 10px 3.9rem;
+  }
+  
+  /* @media (max-width: 768px) {
+    .solidcam-pd-container {
+      padding: 10px;
+    }
+  
+    .custom-grid-container {
+      margin: 10px; 
+    }
+  } */
+
+
+  
+  @media (max-width: 768px) {
+    .solidcam-pd-container {
+      padding: 10px;
+    }
+  
+    .custom-grid-container {
+      margin: 10px;
+    }
+  
+    .homepage_card {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .homepage_card img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  

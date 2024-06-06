@@ -79,6 +79,10 @@ import Holidays from './holidays/holidays';
 import FacultyProfile from './Faculty/FacultyProfile';
 import ChangePassword from './Authentication/ChangePassword';
 
+import { InternalJob } from './InternalJobs/InternalJob';
+import { InternalJobApply } from './InternalJobs/InternalJobApply';
+import { InternalJobDetails } from './InternalJobs/InternalJobDetails';
+
 
 class TechnicalApp extends Component {
   render() {
@@ -167,6 +171,11 @@ class TechnicalApp extends Component {
             <Route path='/holidays' component={Holidays} />
             <Route path="/exitdashboard" component={AdminConsoleForExit}/>
             <Route path="/empexit" component={EmployeeExit}/>
+
+            <Route path="/internal-job" component={InternalJob}/>
+          <Route path="/job_id/:index" component={InternalJobDetails}/>
+          <Route path="/internal-job-apply" component={InternalJobApply}/>
+ 
 
           <DashboardUser />
         </Switch>

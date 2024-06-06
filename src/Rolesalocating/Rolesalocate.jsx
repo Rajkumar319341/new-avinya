@@ -104,14 +104,9 @@ class Rolesalocate extends Component {
             if (!this.state.job_id || !this.state.job_type || !this.state.salary || !this.state.job_tenure || !this.state.location || !this.state.description || !this.state.designated_person) {
                 toast("Please Enter Valid Details");
             }
-
         }
         else {
             var sendstate = {
-
-                // branch: this.state.branch,
-                // description: this.state.description,
-                // id: 0,
                 designated_person: this.state.designated_person,
                 email_id: this.state.email_id,
                 id: 0,

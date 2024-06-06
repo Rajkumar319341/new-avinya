@@ -30,8 +30,8 @@ class UserApp extends Component {
         <Navbar />
         <Switch>
           <Route path='/' exact component={DashboardUser} />
-          <Route path='/emailservice' exact component={AddEmail} />
-          <Route path='/addfestival' exact component={FestivalForm} />
+          {/* <Route path='/emailservice' exact component={AddEmail} />
+          <Route path='/addfestival' exact component={FestivalForm} /> */}
           <Route path='/guide' component={Guide} />
           <Route path='/about' component={AboutUser} />
           <Route path='/contact' component={ContactUser} />
@@ -40,8 +40,8 @@ class UserApp extends Component {
           <Route path='/userhome' exact component={HomeUser} />
           <Route path='/mockTest' component={MockTest} />
           <Route path='/mock' component={Mock} />
-          <Route path='/festivals' component={SuperAdminFestivalApi} />
-          <Route path='/emails' component={SuperAdminEmailAPI} />
+          {/* <Route path='/festivals' component={SuperAdminFestivalApi} />
+          <Route path='/emails' component={SuperAdminEmailAPI} /> */}
 
 
 

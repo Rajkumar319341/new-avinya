@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { Button } from "@mui/material";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import {FormHelperText} from "@mui/material";
-
+ 
 export const CreateInvoice = () => {
   const [ParentIdData, setParentIdData] = useState([]);
   const [emailError, setEmailError] = useState("");
@@ -15,7 +15,7 @@ export const CreateInvoice = () => {
   const [showFields, setShowFields] = useState(false);
   const [showInvoiceFields, setShowInvoiceFields] = useState(false);
   const [invType, setInvType] = useState("");
-
+ 
   const [formData, setFormData] = useState({
     idinvoices: "",
     invoiceid: "",
@@ -50,16 +50,16 @@ export const CreateInvoice = () => {
     },
     paymentstatus: "",
   });
-
-
-
+ 
+ 
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === 'custEmailId') {
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       setEmailError(!emailPattern.test(value));
     }
-
+ 
     if (name.includes('.')) {
       const [parent, child] = name.split('.');
       setFormData(prevState => ({
@@ -73,7 +73,7 @@ export const CreateInvoice = () => {
       if (name === 'invType') {
         setInvType(value);
       }
-
+ 
       setFormData({
         ...formData,
         [name]: value
@@ -86,8 +86,8 @@ export const CreateInvoice = () => {
       setShowInvoiceFields(true)
     }
   };
-
-
+ 
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -98,7 +98,7 @@ export const CreateInvoice = () => {
       console.log(response.data);
       const itemTotal = formData.items.itemTotal;
       console.log("Item Total:", itemTotal);
-
+ 
       setFormData((prevState) => ({
         ...prevState,
         idinvoices: 0,
@@ -134,7 +134,7 @@ export const CreateInvoice = () => {
         },
         paymentstatus: "",
       }));
-
+ 
       if (formData.invType === 'QUOTATIONS' || formData.invType === 'PROFORMA') {
         setFormData((prevState) => ({
           ...prevState,
@@ -145,7 +145,7 @@ export const CreateInvoice = () => {
           balance: ""
         }));
       }
-
+ 
       if(formData.invType === 'INVOICE'){
         // const date= formData.date;
         // console.log("Date:",date)
@@ -156,13 +156,13 @@ export const CreateInvoice = () => {
           partialPaid2:"",
           partialPaid3:"",
           due_date:"2024-05-04",
-
+ 
         }))
       }
       toast.success("Invoice sent successfully to Customer Email Address");
-
-
-
+ 
+ 
+ 
       console.log(formData);
       if (response.data.status === "success") {
         toast.success("Invoice created successfully");
@@ -172,7 +172,7 @@ export const CreateInvoice = () => {
       toast.error("Error creating invoice");
     }
   };
-
+ 
   useEffect(() => {
     const url = `${APIData.api}invoices?org=${org}`;
     axios
@@ -188,7 +188,7 @@ export const CreateInvoice = () => {
         console.error(error);
       });
   }, []);
-
+ 
   useEffect(() => {
     if (
       formData.parentInvoiceid &&
@@ -197,7 +197,7 @@ export const CreateInvoice = () => {
       fetchParentIdData();
     }
   }, [formData.parentInvoiceid, parentInvoiceIds]);
-
+ 
   useEffect(() => {
     const { quantity, unitPrice } = formData.items;
     const {
@@ -208,11 +208,11 @@ export const CreateInvoice = () => {
       partialPaid2,
       partialPaid3,
     } = formData;
-
+ 
     if (quantity && unitPrice) {
       const itemTotal = quantity * unitPrice;
       setFormData((prevState) => ({
-
+ 
         ...prevState,
         items: {
           ...prevState.items,
@@ -221,7 +221,7 @@ export const CreateInvoice = () => {
         },
       }));
     }
-
+ 
     if (formData.items.itemTotal) {
       if (cgstPercentage) {
         const cgstAmount = formData.items.itemTotal * (cgstPercentage / 100);
@@ -230,7 +230,7 @@ export const CreateInvoice = () => {
           cgstAmount,
         }));
       }
-
+ 
       if (sgstPercentage) {
         const sgstAmount = formData.items.itemTotal * (sgstPercentage / 100);
         setFormData((prevState) => ({
@@ -239,7 +239,7 @@ export const CreateInvoice = () => {
         }));
       }
     }
-
+ 
     if (formData.cgstAmount && formData.sgstAmount) {
       const totalTax = formData.cgstAmount + formData.sgstAmount;
       setFormData((prevState) => ({
@@ -247,7 +247,7 @@ export const CreateInvoice = () => {
         totalTax,
       }));
     }
-
+ 
     if (formData.items.itemTotal && formData.totalTax) {
       const total =
         parseFloat(formData.items.itemTotal) + parseFloat(formData.totalTax);
@@ -256,21 +256,21 @@ export const CreateInvoice = () => {
         total,
       }));
     }
-
+ 
     if (paidAmount) {
       console.log("paid amt:", paidAmount)
       const amountWords = num2words(paidAmount, { currency: true });
       console.log("amountWords amt:", amountWords)
-
+ 
       const formattedAmountWords = formatAmountWords(amountWords);
       console.log("formattedAmountWords:", formattedAmountWords)
-
+ 
       setFormData((prevState) => ({
         ...prevState,
         amountWords: formattedAmountWords,
       }));
     }
-
+ 
     if (
       formData.total &&
       partialPaid1 !== undefined &&
@@ -283,9 +283,9 @@ export const CreateInvoice = () => {
         balance,
         paymentstatus: balance === 0 ? "RECEIVED" : "PENDING",
       }
-
-
-
+ 
+ 
+ 
       ));
     }
     if (formData.total && paidAmount !== undefined) {
@@ -295,7 +295,7 @@ export const CreateInvoice = () => {
         balance,
         paymentstatus: balance === 0 ? "RECEIVED" : "PENDING",
       }
-
+ 
       ));
     }
   }, [
@@ -314,7 +314,7 @@ export const CreateInvoice = () => {
     formData.partialPaid3,
     formData.balance,
   ]);
-
+ 
   const formatAmountWords = (amountWords) => {
     const words = amountWords.split(" ");
     return `${words
@@ -322,7 +322,6 @@ export const CreateInvoice = () => {
       .join(" ")
       .trim()} Rupees`;
   };
-
   const fetchParentIdData = async () => {
     const url = `${APIData.api}invoices/parent-invoiceId?parentInvoiceId=${formData.parentInvoiceid}&org=${org}`;
     try {
@@ -395,10 +394,10 @@ export const CreateInvoice = () => {
                 <MenuItem value="INVOICE">INVOICE </MenuItem>
               </Select>
               <FormHelperText>Select the Invoice Type ie. QUOTATIONS, PROFORMA, PARTIAL INVOICE, INVOICE</FormHelperText>
-
+ 
             </FormControl>
           </Grid>
-
+ 
           {showFields &&(
              <Grid item xs={12} sm={6}>
              <TextField
@@ -412,7 +411,7 @@ export const CreateInvoice = () => {
              />
            </Grid>
           )}
-
+ 
           <Grid item xs={12} sm={6}>
             <TextField
               label="Customer Email ID"
@@ -427,7 +426,7 @@ export const CreateInvoice = () => {
               }
             />
           </Grid>
-
+ 
           <Grid item xs={12} sm={6}>
             <TextField
               label="Customer Name"
@@ -450,7 +449,7 @@ export const CreateInvoice = () => {
               helperText="Enter Address of a Customer"
             />
           </Grid>
-
+ 
           <Grid item xs={12} sm={6}>
             <TextField
               label="Serial No"
@@ -462,7 +461,7 @@ export const CreateInvoice = () => {
               helperText="Enter Serial No of the item"
             />
           </Grid>
-
+ 
           <Grid item xs={12} sm={6}>
             <TextField
               label="Item Name"
@@ -485,7 +484,7 @@ export const CreateInvoice = () => {
               helperText="Enter the Quantity of Product , ie. Number of Product Items "
             />
           </Grid>
-
+ 
           <Grid item xs={12} sm={6}>
             <TextField
               label="Unit Price of an Item"
@@ -508,7 +507,7 @@ export const CreateInvoice = () => {
               helperText="Total amount of the Product"
             />
           </Grid>
-
+ 
           <Grid item xs={12} sm={6}>
             <TextField
               label="Sub Total"
@@ -521,7 +520,7 @@ export const CreateInvoice = () => {
               helperText="Sub Total ex: 1st item = 100 Rs(Total amount of an item), 2nd item= 200 Rs(Total amount of an item), Sub Total will be 300Rs"
             />
           </Grid>
-
+ 
           <Grid item xs={12} sm={6}>
             <TextField
               label="CGST Percentage"
@@ -533,7 +532,7 @@ export const CreateInvoice = () => {
               helperText="CGST : Central Goods and Service Tax"
             />
           </Grid>
-
+ 
           <Grid item xs={12} sm={6}>
             <TextField
               label="CGST Amount"
@@ -556,7 +555,7 @@ export const CreateInvoice = () => {
               helperText="SGST : State Goods and Service Tax"
             />
           </Grid>
-
+ 
           <Grid item xs={12} sm={6}>
             <TextField
               label="SGST Amount"
@@ -579,7 +578,7 @@ export const CreateInvoice = () => {
               helperText="Total Tax, ie. Combination of SGST Amount and CGST Amount"
             />
           </Grid>
-
+ 
           <Grid item xs={12} sm={6}>
             <TextField
               label="Final Amount"
@@ -592,7 +591,7 @@ export const CreateInvoice = () => {
               helperText="Final Amount: ie, Amount including tax and product price"
             />
           </Grid>
-          
+         
           {showFields && (
             <>
               <Grid item xs={12} sm={6}>
@@ -606,7 +605,7 @@ export const CreateInvoice = () => {
                   helperText="Partial Payment 1, ie. The amount which customer pays first time from the Total Amount"
                 />
               </Grid>
-
+ 
               <Grid item xs={12} sm={6}>
                 <TextField
                   label="Partial Payment 2"
@@ -640,7 +639,7 @@ export const CreateInvoice = () => {
                   helperText="The amount paid by the customer"
                 />
               </Grid>
-
+ 
               <Grid item xs={12} sm={6}>
                 <TextField
                   label="Paid Amount In Words"
@@ -651,8 +650,8 @@ export const CreateInvoice = () => {
                   helperText="The paid amount to display in the Words"
                 />
               </Grid>
-
-
+ 
+ 
               <Grid item xs={12} sm={6}>
                 <TextField
                   label="Balance Amount"
@@ -666,7 +665,7 @@ export const CreateInvoice = () => {
               </Grid>
             </>
           )}
-
+ 
           {showInvoiceFields && (
             <>
               <Grid item xs={12} sm={6}>
@@ -678,10 +677,10 @@ export const CreateInvoice = () => {
                   onChange={handleChange}
                   type="number"
                   helperText="The amount paid by the customer"
-
+ 
                 />
               </Grid>
-
+ 
               <Grid item xs={12} sm={6}>
                 <TextField
                   label="Amount In Words"
@@ -690,7 +689,7 @@ export const CreateInvoice = () => {
                   value={formData.amountWords}
                   onChange={handleChange}
                   helperText="The paid amount to display in the Words"
-
+ 
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -702,13 +701,13 @@ export const CreateInvoice = () => {
                   onChange={handleChange}
                   type="number"
                   helperText="The balance amount to be paid by the customer"
-
+ 
                 />
               </Grid>
             </>
           )}
-
-
+ 
+ 
           <Grid item xs={12} sm={6}>
             <TextField
               label="Date"
@@ -721,8 +720,8 @@ export const CreateInvoice = () => {
               helperText="Date of generating the invoice"
             />
           </Grid>
-
-
+ 
+ 
           {invType !== "INVOICE" && (
             <Grid item xs={12} sm={6}>
               <TextField
@@ -737,8 +736,8 @@ export const CreateInvoice = () => {
               />
             </Grid>
           )}
-
-
+ 
+ 
           <Grid item xs={12} sm={6}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">
@@ -757,7 +756,7 @@ export const CreateInvoice = () => {
               <FormHelperText> Status of the Payment ie, either the Amount to be paid is Pending or Received</FormHelperText>
             </FormControl>
           </Grid>
-
+ 
           <Grid item xs={12}  style={{textAlign:"center"}}>
             <Button variant="contained" color="primary" onClick={handleSubmit}>
               Submit
@@ -768,6 +767,5 @@ export const CreateInvoice = () => {
     </Paper>
   );
 };
-
+ 
 export default CreateInvoice;
-

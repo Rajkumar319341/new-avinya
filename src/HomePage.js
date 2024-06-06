@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navigation/Navbar.css';
-import logo from "./Images/Image.png"
 import { APIData } from './Authentication/APIData'
-import HomePageCard from './HomepageCard';
 import axios from 'axios';
 import { org } from './Authentication/APIData';
-import ImageLogo from './Authentication/imagelogo';
+import NewPage from './NewPage';
+import photo from "../src/Images/img back.png"
+
+
+
 
 
 function HomePage() {
+
   const [click, setClick] = useState(false);
-  const [logoUrl, setLogoUrl] = useState('');
+  const [logoUrl, setLogoUrl] = useState(photo);
 
   const fetchicon = () => {
     axios.get(APIData.api + `org-placeholder/details/type?org=${org}&image_type=logo`, { headers: APIData.headers })
@@ -20,7 +23,13 @@ function HomePage() {
           const firstItem = resp.data[0];
           const imageUrl = firstItem.placeholderImage;
           console.log(imageUrl);
-          setLogoUrl(imageUrl);
+          if (imageUrl === null || imageUrl === "") {
+            setLogoUrl(photo);
+          }
+          else {
+            setLogoUrl(imageUrl)
+          }
+
         } else {
           console.error("No data found.");
         }
@@ -40,11 +49,11 @@ function HomePage() {
 
   return (
     <div className="homepage">
-
+      
       <nav className='navbar'>
         <Link to="/">
           <div className="holdnav">
-            <img className="logo" src={logoUrl} alt="logo" border="0" />
+            {<img className="logo" src={logoUrl} alt="logo" border="0" />}
           </div>
         </Link>
         <div className="holdnav" >
@@ -83,65 +92,15 @@ function HomePage() {
               </Link>
 
             </li>
-
-            {/* <li className='nav-item'>
-            <Link  className='nav-links' onClick={closeMobileMenu}>
-              <div style={BUTTON_WRAPPER_STYLES} onClick={() => console.log('clicked')}>
-                <Link onClick={() => setIsOpen(true)}>User Sign In</Link>
-                  <SignInModal open={isOpen} onClose={() => setIsOpen(false)}>
-                   <Signin />
-                  </SignInModal>
-                </div>    
-            </Link>
-          </li> */}
-            {/* <li
-            className='nav-item'
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-          >
-          <Link
-         
-            className='nav-links'
-            onClick={closeMobileMenu}
-          >
-            Sign In <i className='fas fa-caret-down' />
-          </Link>
-          {dropdown && <Dropdown />}
-          </li> */}
-            {/*
-          <li className='nav-item'>
-            <Link
-              to='/products'
-              className='nav-links'
-              onClick={closeMobileMenu}
-            >
-              Products
-            </Link>
-          </li>
-            <div>
-        <img className="logo01" src="https://i.ibb.co/tPBqzm4/loogo.png" />
-        </div>*/}
           </ul>
         </div>
       </nav>
-      {/* {console.log(dropdown)} */}
-
 
       <div>
         <main className="wrapper">
-          <section className="hero">
-            <h1>{APIData.orgName}<div className='subtitle-hero'></div></h1>
-            {/* <div>
-                Solutions Private Limited
-              </div> */}
-            <article>
-              <p>Welcome</p>
-              <Link to="contact"><a href="#webpage" >Contact Us</a></Link>
-              {/* <Link to="contact"><a href="#webpage" >Apply For Job</a></Link>  */}
-            </article>
-          </section>
-          {/* <ImageLogo/> */}
-          <HomePageCard />
+
+          <NewPage />
+
         </main>
       </div>
 

@@ -1,3 +1,5 @@
+
+
 import React, { Component } from "react";
 import { APIData, org } from "../../Authentication/APIData";
 import axios from "axios";
@@ -5,6 +7,8 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import * as AiIcons from "react-icons/ai";
 import Loading from "../../Loading";
+import { Dialog, DialogActions, DialogContent, DialogTitle, Button, Grid } from "@material-ui/core";
+import Unsplash from "../../Unsplash/Unsplash";
 
 toast.configure();
 const initialState = {};
@@ -13,6 +17,7 @@ const sessiondetails = JSON.parse(localStorage.getItem("sessiondetails"));
 var today = new Date();
 var datetime =
   today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+
 class createHomepageCards extends Component {
   constructor(props) {
     super(props);
@@ -41,11 +46,15 @@ class createHomepageCards extends Component {
 
       updated_date_time: "",
       updated_date_time_error: "",
+      showFileInput: false,
+      openDialog: false,
     };
   }
+
   responseloading() {
     this.setState({ loading: !this.state.loading });
   }
+
   validation = () => {
     let placeholder_name_error = "";
     let placeholder_desc_error = "";
@@ -100,7 +109,7 @@ class createHomepageCards extends Component {
     }
     return true;
   };
-  //   base64
+
   base64code = "";
 
   onChange = (e) => {
@@ -109,16 +118,11 @@ class createHomepageCards extends Component {
     this.getBase64(file);
   };
 
-
   onLoad = (fileString) => {
-    // Remove the prefix 'data:image/png;base64,'
     const base64Data = fileString.replace(/^data:image\/(png|jpeg);base64,/, "");
     this.base64code = base64Data;
-    this.state.placeholder_img = base64Data;
+    this.setState({ placeholder_img: base64Data });
   };
-
-
-
 
   getBase64 = (file) => {
     let reader = new FileReader();
@@ -128,13 +132,11 @@ class createHomepageCards extends Component {
     };
   };
 
-
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   submitHandler = (e) => {
-    // console.log(sessiondetails);
     e.preventDefault();
     const isValide = this.validation();
     if (!isValide) {
@@ -159,9 +161,6 @@ class createHomepageCards extends Component {
           placeholderImage: this.state.placeholder_img,
           placeholderTitle: this.state.placeholder_title
         };
-        {
-          console.log(sendstate);
-        }
         this.responseloading();
         axios
           .post(APIData.api + "org-placeholder/details/", sendstate, {
@@ -169,25 +168,33 @@ class createHomepageCards extends Component {
           })
           .then((response) => {
             toast("Card Added Successfully!");
-            var url;
-            if (sessiondetails.userType == "superadmin")
-              url = new URL(APIData.url + "#/superAdminHomepageCard");
-            else if (sessiondetails.userType == "admin")
-              url = new URL(APIData.url + "#/HomepageCardAdmin");
-
-            window.location.assign(url);
             this.responseloading();
           })
           .catch((error) => {
             this.responseloading();
-            console.log(error);
-            toast(error)
+            toast(error);
           });
       }
     }
   };
+
+  handleOpenDialog = () => {
+    this.setState({ openDialog: true });
+  };
+
+  handleCloseDialog = () => {
+    this.setState({ openDialog: false });
+  };
+
+  handleSelectImage = (image) => {
+    this.setState({ placeholder_img: image });
+    this.handleCloseDialog();
+  };
+
   render() {
-    const { placeholder_name, placeholder_desc, placeholder_img, placeholder_title } = this.state;
+    const { placeholder_name, placeholder_desc, placeholder_title, openDialog } = this.state;
+   
+
     return (
       <div>
         {this.state.loading ? (
@@ -196,7 +203,7 @@ class createHomepageCards extends Component {
           <form className="superaddcourses" onSubmit={this.submitHandler}>
             <Link
               to={
-                sessiondetails.userType == "superadmin"
+                sessiondetails.userType === "superadmin"
                   ? "superAdminHomepageCard"
                   : "HomepageCardAdmin"
               }
@@ -233,7 +240,6 @@ class createHomepageCards extends Component {
                     DESCRIPTION:
                   </label>
                   <br />
-
                   <input
                     placeholder="Description"
                     className="inputfield"
@@ -241,7 +247,7 @@ class createHomepageCards extends Component {
                     onChange={this.changeHandler}
                     type="text"
                     name="placeholder_desc"
-                  ></input>
+                  />
                   {this.state.placeholder_desc_error ? (
                     <div style={{ color: "red" }}>
                       {this.state.placeholder_desc_error}
@@ -273,25 +279,23 @@ class createHomepageCards extends Component {
                     IMAGE:
                   </label>
                   <br />
-
+                  <button type="button" onClick={this.handleOpenDialog}>
+                    Choose from predefined images
+                  </button>
                   <input
                     className="Upload"
                     type="file"
                     onChange={this.onChange}
                     accept="image/*"
-                  // name="placeholder_img"
-                  // placeholder="IMAGE"
-                  // value={placeholder_img}
-                  // onChange={this.changeHandler}
+                    style={{ display: this.state.showFileInput ? "block" : "none" }}
                   />
-                  {console.log(this.base64code)}
-
                   {this.state.placeholder_img_error ? (
                     <div style={{ color: "red" }}>
                       {this.state.placeholder_img_error}
                     </div>
                   ) : null}
                 </div>
+
                 <div className="">
                   <label className="heading02" htmlFor="TITLE">
                     TITLE:
@@ -305,14 +309,12 @@ class createHomepageCards extends Component {
                     value={placeholder_title}
                     onChange={this.changeHandler}
                   />
-                  {this.state.placeholder_name_error ? (
+                  {this.state.placeholder_title_error ? (
                     <div style={{ color: "red" }}>
-                      {this.state.placeholder_name_error}
+                      {this.state.placeholder_title_error}
                     </div>
                   ) : null}
                 </div>
-
-
               </div>
               <div className="submitcarry">
                 <button className="Submitbutton" type="submit">
@@ -322,9 +324,22 @@ class createHomepageCards extends Component {
             </div>
           </form>
         )}
+
+        <Dialog open={openDialog} onClose={this.handleCloseDialog}>
+          <DialogTitle>Select an Image</DialogTitle>
+          <DialogContent>
+            <Unsplash/>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleCloseDialog} color="primary">
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     );
   }
 }
 
 export default createHomepageCards;
+

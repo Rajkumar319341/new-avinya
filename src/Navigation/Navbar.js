@@ -6,8 +6,9 @@ import * as AiIcons from "react-icons/ai";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { SidebarData } from "./SidebarData";
 import { IconContext } from "react-icons";
-import { APIData } from "../Authentication/APIData";
-import logo from "../Images/Image.png";
+import { APIData,org } from "../Authentication/APIData";
+import axios from "axios";
+import { useEffect } from "react";
 import {
   ProSidebar,
   Menu,
@@ -17,6 +18,7 @@ import {
 } from "react-pro-sidebar";
 import "./Navbar.scss";
 import { CgProfile } from "react-icons/cg";
+import photo from "../Images/img back.png"
 
 
 const sessiondetails = JSON.parse(localStorage.getItem("sessiondetails"));
@@ -67,12 +69,43 @@ function Navbar() {
   const showSidebar = () => setSidebar(!sidebar);
   let [subsidebar, showsubsidebar] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [logoUrl, setLogoUrl] = useState(photo);
 
   function showSubsidebar(e) {
     e.preventDefault();
     console.log(subsidebar);
     showsubsidebar(!subsidebar);
   }
+
+  const fetchicon = () => {
+    axios.get(APIData.api + `org-placeholder/details/type?org=${org}&image_type=logo`, { headers: APIData.headers })
+      .then((resp) => {
+        if (resp.data.length > 0) {
+          const firstItem = resp.data[0];
+          const imageUrl = firstItem.placeholderImage;
+          console.log(imageUrl);
+          if(imageUrl===null||imageUrl==="" ){
+            setLogoUrl(photo);
+          }
+          else{
+            setLogoUrl(imageUrl)
+          }
+          
+        } else {
+          console.error("No data found.");
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
+
+
+  useEffect(() => {
+    fetchicon();
+  }, []);
+
   const handleClick = () => setClick(!click);
 
   return (
@@ -90,7 +123,7 @@ function Navbar() {
         </Link>
         <Link to='/'>
           <div className="holdnav">
-            <img className="logo" src={logo} alt="logo" border="0" />
+            <img className="logo" src={logoUrl} alt="logo" border="0" />
           </div>
         </Link>
         <div className="holdnav">

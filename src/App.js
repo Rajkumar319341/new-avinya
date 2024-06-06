@@ -52,6 +52,7 @@ import JobApplyPage from './SQLTables/JobApplyPage';
 // import Navbar2 from './Navigation/Navbar2';
 // import Navbar2 from './components/Navbar2';
 import SelectDept from './SelectDept';
+import NewPage from './NewPage';
 
 
 
@@ -61,7 +62,8 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route path='/' exact component={HomePage} />
+          <Route path='/' exact component={HomePage} /> 
+          {/* <Route path='/' exact component={NewPage}/> */}
           <Route path="/homepage-card" exact component={HomePageCard} />
           <Route path="/detail/:index" component={DetailPage} />
 

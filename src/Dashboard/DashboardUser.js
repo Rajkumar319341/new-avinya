@@ -12,16 +12,21 @@ import Aos from "aos";
 import 'aos/dist/aos.css'
 import Puzzle from "./Puzzle";
 import TicTacToe from "./TicTacToe";
+ 
+ 
 import { Container } from '@mui/material';
 const DashboardUser = () => {
+ 
   const PieChartContainer = useRef(null);
-
+ 
   const [data, setData] = useState(null);
   const [date, setDate] = useState(new Date());
   const [day, setDay] = useState('');
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
-
-
+ 
+ 
+  var sessiondetails = JSON.parse(localStorage.getItem("sessiondetails"));
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,7 +35,7 @@ const DashboardUser = () => {
         const studentsCount = await fetchTotalStudentsCount();
         const adminsCount = await fetchTotalAdminsCount();
         const employeesCount = await fetchTotalEmployeesCount();
-
+ 
         setData({
           courses: coursesCount.length,
           users: usersCount.length,
@@ -42,14 +47,14 @@ const DashboardUser = () => {
         console.error('Error fetching data:', error);
       }
     };
-
+ 
     fetchData();
   }, []);
-
+ 
   useEffect(() => {
     Aos.init({ delay: 100 })
   }, [])
-
+ 
   useEffect(() => {
     if (data && PieChartContainer.current) {
       const pieCtx = PieChartContainer.current.getContext('2d');
@@ -98,14 +103,14 @@ const DashboardUser = () => {
       });
     }
   }, [data]);
-
+ 
   useEffect(() => {
     const updateDate = () => {
       const now = new Date();
       setDate(now);
       setDay(now.toLocaleDateString('en-US', { weekday: 'long' }));
     };
-
+ 
     const updateTime = () => {
       const now = new Date();
       setTime({
@@ -114,20 +119,20 @@ const DashboardUser = () => {
         seconds: now.getSeconds() < 10 ? '0' + now.getSeconds() : now.getSeconds()
       });
     };
-
+ 
     updateDate();
     updateTime();
-
+ 
     const timer = setInterval(() => {
       updateDate();
       updateTime();
     }, 1000);
-
+ 
     return () => clearInterval(timer);
   }, []);
-
+ 
   const dateString = `${(date.getDate()) < 10 ? '0' + date.getDate() : date.getDate()}-${(date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : date.getMonth()}-${date.getFullYear()}`;
-
+ 
   const fetchTotalCoursesCount = async () => {
     try {
       const url = APIData.api + `courses/course?org=${org}`;
@@ -139,8 +144,8 @@ const DashboardUser = () => {
       throw new Error('Failed to fetch total courses count');
     }
   };
-
-
+ 
+ 
   const fetchTotalAdminsCount = async () => {
     try {
       const url = APIData.api + `admins?org=${org}`;
@@ -154,7 +159,7 @@ const DashboardUser = () => {
       throw new Error("Failed to fetch total admins count");
     }
   };
-
+ 
   const fetchTotalUsersCount = async () => {
     try {
       const url = APIData.api + `users?org=${org}`;
@@ -168,8 +173,8 @@ const DashboardUser = () => {
       throw new Error("Failed to fetch total admins count");
     }
   };
-
-
+ 
+ 
   const fetchTotalEmployeesCount = async () => {
     try {
       const url = APIData.api + `employee/details?org=${org}`;
@@ -180,7 +185,7 @@ const DashboardUser = () => {
       throw new Error("Failed to fetch total admins count");
     }
   };
-
+ 
   const fetchTotalStudentsCount = async () => {
     try {
       const url = APIData.api + `students?org=${org}`;
@@ -192,8 +197,8 @@ const DashboardUser = () => {
       throw new Error("Failed to fetch total admins count");
     }
   };
-
-
+ 
+ 
   return (
     <div className="dashboard-container">
       <Paper elevation={3} style={{ height: "300px", padding: "30px" }} className='paper'>
@@ -204,14 +209,14 @@ const DashboardUser = () => {
               <br></br>
               <h5 style={{ color: "white" }}>Here's what's happening in your Academy today</h5>
               <br></br>
-
+ 
             </div>
             <img src={demo} alt="Welcome illustration" className="overview-image" />
           </div>
         </div>
       </Paper>
-
-
+ 
+ 
       <Paper elevation={3} className="clock_paper" >
         <div className="digital_clock">
           <div className="digital_time">
@@ -223,30 +228,30 @@ const DashboardUser = () => {
             <Paper elevation={4} className='paper_time_value'>
               <span className="time_value">{day}</span>
             </Paper>
-
+ 
           </div>
           <div className="digital_time">
             <Paper elevation={4} className='paper_time_value'>
-
+ 
               <span className="time_value">{time.hours}:{time.minutes}:{time.seconds}</span>
             </Paper>
-
+ 
           </div>
         </div>
       </Paper>
-
+ 
       <Paper elevation={3}>
         <div className="chart-legend-container">
-
+ 
           <div className="chart-container" style={{ padding: "20px", width: "50%" }}>
             <canvas ref={PieChartContainer} id="my_chart2" className="chart-pie"></canvas>
           </div>
-
+ 
           <div className="legend-container" style={{ width: "100%", padding: "20px" }}>
             <Paper elevation={3} className='paper-lengend-card'>
-
+ 
               <div className="legend-card">
-
+ 
                 <ul className="legend-labels">
                   <li style={{ height: "2rem", color: "white", fontWeight: "bold" }}>Total Courses</li>
                   <li style={{ height: "2rem", color: "white", fontWeight: "bold" }}>Total Users</li>
@@ -261,15 +266,15 @@ const DashboardUser = () => {
                   <Paper elevation={4} style={{ width: "3rem", height: "2rem", textAlign: "center", fontWeight: "bold" }}>    <li>{data ? data.admins : '-'}</li></Paper >
                   <Paper elevation={4} style={{ width: "3rem", height: "2rem", textAlign: "center", fontWeight: "bold" }}>   <li>{data ? data.employees : '-'}</li></Paper >
                 </ul>
-
+ 
               </div>
             </Paper>
-
+ 
           </div>
-
+ 
         </div>
       </Paper>
-
+ 
       {/* NAVBAR CARDS  */}
       <div className="gridContainer">
         <Grid container spacing={3}>
@@ -301,7 +306,7 @@ const DashboardUser = () => {
           ))}
         </Grid>
         <br></br>
-
+ 
         <Container maxWidth="lg">
           <Grid container spacing={2} justifyContent="center" alignItems="center">
             <Grid item xs={12} md={6}>
@@ -318,10 +323,10 @@ const DashboardUser = () => {
             </Grid>
           </Grid>
         </Container>
-
+ 
       </div>
     </div>
   );
 };
-
+ 
 export default DashboardUser;

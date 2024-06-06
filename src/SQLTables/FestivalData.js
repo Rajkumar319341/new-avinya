@@ -19,23 +19,24 @@ toast.configure();
 
 let tasks = [];
 
+
+
 const sessiondetails = JSON.parse(localStorage.getItem("sessiondetails"));
 const fetchedDept = localStorage.getItem("Depart Details");
-console.log("Fetched department:", fetchedDept);
+// console.log("Fetched department:", fetchedDept);
 
 let fetchedPrivileges = null;
 
 if (sessiondetails !== null) {
+ 
   sessiondetails.privileges.forEach(privilege => {
     if (privilege.dept === fetchedDept) {
       fetchedPrivileges = privilege.privileges;
       console.log("Privileges for department", fetchedDept, ":", fetchedPrivileges);
     }
-  });
+ 
+  }); 
 }
-
-
-
 
 
 const styles = theme => ({
@@ -118,6 +119,7 @@ class FestivalData extends Component {
     if (sessiondetails === null) {
       this.props.history.push('/institutionalSignIn');
     }
+    
     else {
       const sessionpriviliges = sessiondetails.privileges;
       console.log("session previliges:", sessionpriviliges)

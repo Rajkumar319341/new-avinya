@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Button, TextField, Paper, Grid, FormControl, InputLabel, FilledInput, Typography, img } from '@mui/material';
+import { Button, TextField, Paper, Grid, FormControl, InputLabel, FilledInput, Typography, Dialog, DialogContent, DialogTitle, Select, MenuItem } from '@mui/material';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { APIData, org } from '../Authentication/APIData';
-import { Select, MenuItem } from '@mui/material';
+import Unsplash from '../Unsplash/Unsplash';
 
 const UpdateDashboardImg = ({ data }) => {
     const [values, setValues] = useState({
@@ -16,12 +16,14 @@ const UpdateDashboardImg = ({ data }) => {
     const [imageData, setImageData] = useState(null);
     const [imageTypes, setImageTypes] = useState([]);
     const [image, setImage] = useState(null);
+    const [open, setOpen] = useState(false);
+    const [selectedFileName, setSelectedFileName] = useState('');
 
     console.log("Data:", data)
 
     const fetchImageData = async () => {
         try {
-            const response = await axios.get(`${APIData.api}org-placeholder/details/image?placeHolderName=${data}`, { headers: APIData.headers });
+            const response = await axios.get(`${APIData.api}org-placeholder/details/image?placeHolderName=${data}&org=${org}`, { headers: APIData.headers });
             const imageData = response.data;
             setImageData(imageData);
             setValues({
@@ -61,9 +63,29 @@ const UpdateDashboardImg = ({ data }) => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
+    // const handleImageChange = (event) => {
+    //     setImage(event.target.files[0]);
+    //     setValues({ ...values, image: event.target.files[0] });
+    // };
     const handleImageChange = (event) => {
         setImage(event.target.files[0]);
-        setValues({ ...values, image: event.target.files[0] });
+        const file = event.target.files[0];
+        setValues({ ...values, image: file });
+        setSelectedFileName(file.name);
+    };
+
+    const fetchImageAsFile = async (imageUrl) => {
+        const response = await fetch(imageUrl);
+        const blob = await response.blob();
+        const fileName = imageUrl.split('/').pop();
+        return new File([blob], fileName, { type: blob.type });
+    };
+
+    const handleImageSelect = async (selectedImageUrl) => {
+        const imageFile = await fetchImageAsFile(selectedImageUrl);
+        setValues({ ...values, image: imageFile });
+        setSelectedFileName(imageFile.name);
+        handleClose();
     };
 
     const handleSubmit = () => {
@@ -95,7 +117,16 @@ const UpdateDashboardImg = ({ data }) => {
             });
     };
 
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return (
+        <>
         <Paper elevation={3} sx={{ padding: 2, maxWidth: 600, margin: 'auto' }}>
             <Typography variant='h5' style={{ textAlign: "center", fontFamily: "Roboto slab" }}> UPDATE HOME PAGE CARD</Typography>
             <Grid container spacing={2}>
@@ -137,8 +168,8 @@ const UpdateDashboardImg = ({ data }) => {
                     />
                 </Grid>
 
-                <Grid item xs={12}>
-                    <img src={image} alt="Image" style={{ width: 200, height: 200 }} /> 
+                {/* <Grid item xs={12}>
+                    <img src={image} alt="Image" style={{ width: 200, height: 200, objectFit:"contain" }} /> 
                     <FormControl variant="standard">
                         <InputLabel shrink={true}>Image</InputLabel>
                         <FilledInput
@@ -156,7 +187,40 @@ const UpdateDashboardImg = ({ data }) => {
                 </Grid>
 
             </Grid>
-        </Paper>
+        </Paper> */}
+        <Grid item xs={12}>
+                    <img src={image} alt="Image" style={{ width: 200, height: 200, objectFit:"contain" }} /> 
+                    <FormControl variant="standard">
+                        <InputLabel shrink={true}>Image</InputLabel>
+                        <FilledInput
+                            id="image"
+                            type='file'
+                            onChange={handleImageChange}
+                        />
+                    </FormControl>
+                </Grid>
+         <Grid item xs={12}>
+                        <FormControl variant="standard">
+                            <p>You Can Select images from our Website</p>
+                            <Button onClick={handleClickOpen}>Images</Button>
+                        </FormControl>
+                    </Grid>
+                    <Grid item xs={12} style={{ textAlign: "center", marginTop: 10 }}>
+                        <Button variant="contained" color="primary" onClick={handleSubmit}>
+                            Submit
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Paper>
+
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Upload Image</DialogTitle>
+                <DialogContent>
+                    <Unsplash onSelectImage={handleImageSelect} />
+                </DialogContent>
+            </Dialog>
+        
+       </>
     );
 };
 

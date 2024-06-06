@@ -18,6 +18,7 @@ const AddJob = () => {
         org: org,
         job_tenure: '',
         job_type: '',
+        job_opening_type:'',
         location: '',
         role: '',
         roles_and_resp: '',
@@ -137,6 +138,7 @@ const AddJob = () => {
                     org: org,
                     job_tenure: '',
                     job_type: '',
+                    job_opening_type:'',
                     location: '',
                     role: '',
                     roles_and_resp: '',
@@ -271,6 +273,23 @@ const AddJob = () => {
                                     </MenuItem>
                                     <MenuItem value="PERMANENT">PERMANENT</MenuItem>
                                     <MenuItem value="CONTRACTOR">CONTRACTOR</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <FormControl fullWidth variant="outlined">
+                                <Select
+                                    name="job_opening_type"
+                                    value={formData.job_opening_type}
+                                    onChange={handleChange}
+                                    displayEmpty
+                                    required
+                                >
+                                    <MenuItem value="" disabled>
+                                        Job Opening Type
+                                    </MenuItem>
+                                    <MenuItem value="INTERNAL">INTERNAL</MenuItem>
+                                    <MenuItem value="EXTERNAL ">EXTERNAL </MenuItem>
                                 </Select>
                             </FormControl>
                         </Grid>

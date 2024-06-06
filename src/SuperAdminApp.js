@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Navbar from './Navigation/Navbar';
-
+ 
 import SuperAdminProfile from './Super_Admin/SuperAdminProfile';
 import SuperAdminStudents from './Super_Admin/SuperAdminStudents';
 import SuperAdminFaculty from './Super_Admin/SuperAdminFaculty';
@@ -108,22 +108,25 @@ import CreateJob from './Super_Admin/AddComponents/CreateJob';
 import AddJob from './Super_Admin/AddComponents/AddJob';
 import BrainGame from './Dashboard/BrainGame';
 import UploadDashboardImg from './Dashboard/UploadDashboardImg';
-import { DashboardDetails } from './Dashboard/DashboardDetails';
 import UpdateDashboardImg from './Dashboard/UpdateDashboardImg';
-
-
-
+import { DashboardDetails } from './Dashboard/DashboardDetails';
+import { InternalJob } from './InternalJobs/InternalJob';
+import { InternalJobDetails } from './InternalJobs/InternalJobDetails';
+import { InternalJobApply } from './InternalJobs/InternalJobApply';
+ 
+ 
+ 
 class SuperAdminApp extends Component {
   render() {
     return (
-
+ 
       <Router className="SuperAdminConsole">
         <Navbar />
         <Switch>
           <Route path='/' exact component={DashboardUser} />
           <Route path='/emailservice' exact component={AddEmail} />
           <Route path='/addfestival' exact component={FestivalForm} />
-
+ 
          
           <Route path='/viewTimeTable' component={ViewTimeTable} />
           <Route path='/superAdminProfile' component={SuperAdminProfile} />
@@ -137,7 +140,7 @@ class SuperAdminApp extends Component {
           <Route path='/superAdmin' component={SuperAdmin} />
           <Route path='/superAdminTimeTable' component={SuperAdminTimeTable} />
           <Route path='/AddCourses' component={AddCourses} />
-
+ 
           <Route path='/assets' component={AssetsGroup} />
           <Route path='/assetsList/:id' component={AssetList} />
           <Route path='/addAsset' component={AddAsset} />
@@ -147,8 +150,8 @@ class SuperAdminApp extends Component {
           <Route path='/procurement/approve' component={ApproveProcurement} />
           <Route path='/procurement/request' component={Procurement} />
           <Route path='/employeeAssetAllocation/:assetId/:assetName' component={EmployeeAssetAllocation} />
-
-      
+ 
+     
           <Route path='/superAdminGraph' component={SuperAdminGraph} />
           <Route path='/superAdminMarks' component={SuperAdminMarks} />
           <Route path='/superAdminEnrollments' component={SuperAdminEnrollments} />
@@ -187,7 +190,7 @@ class SuperAdminApp extends Component {
           <Route path='/superAdminStudentIdCard' component={SuperAdminStudentId} />
           <Route path='/createAttendance' component={CreateAttendance} />
           <Route path="/camera" component={Camera} />
-
+ 
           <Route path="/userPasswordManage" component={UserPasswordManage} />
           <Route path="/orgPasswordManage" component={OrgPasswordManage} />
           <Route path="/orgPasswordAccess" component={OrgPasswordAccess} />
@@ -198,14 +201,14 @@ class SuperAdminApp extends Component {
           <Route path="/Orghierarchy" component={Orghierarchy} />
           <Route path="/AvinRegister" component={AvinRegister} />
           <Route path="/Avinhierarchy" component={Avinhierarchy} />
-
+ 
           <Route path="/EmpStationeryList" component={EmpStationeryList} />
           <Route path='/allocateStationay' component={AllocateStationary} />
           <Route path="/Addstationary" component={Addstationary} />
           <Route path="/StationeryItems" component={StationeryItems} />
           <Route path="/EmpStationaryAllocation/:id/:name" component={EmpStationaryAllocation} />
           <Route path="/C4eStationary" component={C4eStationary} />
-
+ 
           <Route path="/exitdashboard" component={AdminConsoleForExit} />
           <Route path="/exitdetails" component={DetailsForExit} />
           <Route path="/empexit" component={EmployeeExit} />
@@ -215,26 +218,32 @@ class SuperAdminApp extends Component {
           <Route path="/ques-template" component={QuestionPaperTemplate} />
           <Route path="/addquestion" component={Addquestions} />
           <Route path="/viewquestion" component={Viewquestions} />
-          
+         
           <Route path="/jobstatus" component={Jobstatus}/>
           <Route path="/rolesallocate" component={Rolesalocate}/>
           <Route path="/deatiled roles" component={Allocatedroledata}/>
           <Route path="/rolecreation" component={Createroles}/>
           <Route path="/rolesdata" component={Rolesdatacreated}/>
-
-
+ 
+ 
           <Route path="/invoice" component={InvoiceData}/>
-
+ 
           <Route path="/create-job" component={CreateJob}/>
           <Route path="/add-job" component={AddJob}/>
-
+ 
           {/* <Route path="/brain-game" component={BrainGame}/> */}
           <Route path="/upload-image" component={UploadDashboardImg}/>
-          <Route path="/dashboard-details" component={DashboardDetails}/>
           <Route path="/update-image" component={UpdateDashboardImg}/>
+          <Route path="/dashboard-details" component={DashboardDetails}/>
 
 
-
+          <Route path="/internal-job" component={InternalJob}/>
+          <Route path="/job_id/:index" component={InternalJobDetails}/>
+          <Route path="/internal-job-apply" component={InternalJobApply}/>
+ 
+ 
+ 
+ 
           <DashboardUser />
         </Switch>
         {/* <Link to="/guide">
