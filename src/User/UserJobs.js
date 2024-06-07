@@ -6,6 +6,12 @@ import { APIData, org } from '../Authentication/APIData';
 import ApplyJobData from "../SQLTables/ApplyJobData";
 
 
+const sessiondetails = JSON.parse(localStorage.getItem("sessiondetails"));
+const fetchedDept = localStorage.getItem("Depart Details");
+console.log("Fetched department:", fetchedDept);
+
+
+
 class UserJobs extends Component {
   state = {
     loading: true,

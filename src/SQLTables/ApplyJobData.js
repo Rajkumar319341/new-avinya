@@ -8,9 +8,13 @@ import { Link } from 'react-router-dom';
 import './ApplyJobData.css';
 
 
+
 toast.configure();
 
+
+
 function Card({ item }) {
+
   return (
     <div className="card-job">
       <h4>{item.job_designation}</h4>
@@ -21,6 +25,9 @@ function Card({ item }) {
         <p>Job Tenure:{item.job_tenure}</p>
      
       <br></br>
+
+      
+
       <Link to={{ pathname: `/job_id/${item.job_id}`, state: { item } }}>Know More </Link>
     </div>
   );

@@ -1,0 +1,27 @@
+External Users:-
+
+user apply job 
+  ||
+applied - accept, set deptsupervisor
+  ||
+user signup, user signin
+  ||
+accept offer
+  ||
+User after sign in accepts the job 
+  ||
+
+then login credentails go to his mail
+
+
+
+Internal Users:-
+
+
+user apply job
+||
+dept supervisor- release (put call)
+||
+
+accept - set dept supervisor
+

@@ -19,8 +19,13 @@ class SuperAdminEmailAPI extends Component {
   };
   async componentDidMount() {
     const url = APIData.api + `asset-email/all?org=${org}`;
+    console.log("url:",url)
     const response = await fetch(url, { headers: APIData.headers });
     const expense = await response.json();
+    console.log("res:",response)
+
+    console.log("res exp:",expense)
+
     this.setState({ expense: expense, loading: false });
   }
   togglePop = () => {

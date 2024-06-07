@@ -37,12 +37,28 @@ console.log("Fetched department:", fetchedDept);
 let fetchedPrivileges = null;
 
 if (sessiondetails !== null) {
+  if(sessiondetails.userType==="employee"){
   sessiondetails.privileges.forEach(privilege => {
     if (privilege.dept === fetchedDept) {
       fetchedPrivileges = privilege.privileges;
       console.log("Privileges for department", fetchedDept, ":", fetchedPrivileges);
     }
-  });
+  }); }
+  else if(sessiondetails.userType==="user"){
+    console.log("Privileges before setting user:", fetchedPrivileges);
+    // console.log("Dept before setting user:", fetchedDept);
+    fetchedPrivileges="1000";
+    // fetchedDept="TECHNICAL"
+    console.log("Privileges for user:", fetchedPrivileges);
+    // console.log("Privileges for user:", fetchedDept);
+    // this.function ()
+  } 
+  else if(sessiondetails.userType==="superadmin"){
+    console.log("Privileges before setting superadmin:", fetchedPrivileges);
+    fetchedPrivileges="1111";
+    console.log("Privileges for superadmin:", fetchedPrivileges);
+
+  }
 }
 
 const styles = theme => ({
@@ -134,7 +150,11 @@ class HolidayData extends Component {
     this.handleChangeRowsPerPage = this.handleChangeRowsPerPage.bind(this);
   }
 
-
+  function(){
+    this.props.history.push("/")
+  
+  }
+  
   responseloading = () => {
     this.setState({ loading: !this.state.loading });
   }

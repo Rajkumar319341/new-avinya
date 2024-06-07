@@ -14,12 +14,26 @@ export const InternalJobApply = (props) => {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
+    const [sup,setSup]=useState("");
 
     const { jobId, Role,branch,designation,department} = props.location.state;
   console.log(jobId, Role);
 
   useEffect(() => {
     const sessionDetails = JSON.parse(localStorage.getItem('sessiondetails'));
+    const fetchedDept = localStorage.getItem("Depart Details");
+    let fetchedSupervisor=null;
+
+    if (sessionDetails !== null) {
+      sessionDetails.privileges.forEach(supervisor => {
+        if (supervisor.dept === fetchedDept) {
+          fetchedSupervisor = supervisor.supervisor;
+          console.log("Prev Dept Supervisor ", fetchedDept, ":", fetchedSupervisor);
+          setSup(fetchedSupervisor)
+
+        }
+      }); 
+    }
     
     if (sessionDetails) {
       setEmail(sessionDetails.email);
@@ -32,6 +46,7 @@ export const InternalJobApply = (props) => {
     const handleSubmit = async (e) => {
     e.preventDefault();
     const sessionDetails = JSON.parse(localStorage.getItem('sessiondetails'));
+
     const enrollmentType = sessionDetails && sessionDetails.userType === "employee" ? "employee" : "employee";
 
     if (!email || !name || !phone) {
@@ -64,7 +79,7 @@ export const InternalJobApply = (props) => {
       job_id:jobId,
       enrolled_date:datetime,
       enrollment_status: "applied",
-      prevDeptSupervisor:'suresh.h@care4edu.com',
+      prevDeptSupervisor:sup,
       release_status:'PENDING',
       enrollment_type: enrollmentType,
       followup_datetime: datetime,

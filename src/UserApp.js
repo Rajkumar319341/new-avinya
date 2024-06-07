@@ -20,6 +20,9 @@ import AddEmail from './Super_Admin/AddComponents/AddEmail';
 import FestivalForm from './Super_Admin/Festivalform';
 import SuperAdminFestivalApi from './Super_Admin/SuperAdminFestivalApi';
 import SuperAdminEmailAPI from './Super_Admin/SuperAdminEmailAPI';
+import AdminDocumentsAPI from './Admin/AdminDocumentsAPI';
+import SuperAdminDocumentsAPI from './Super_Admin/SuperAdminDocumentsAPI';
+import { MyOffers } from './User/MyOffers';
 
 class UserApp extends Component {
 
@@ -30,8 +33,8 @@ class UserApp extends Component {
         <Navbar />
         <Switch>
           <Route path='/' exact component={DashboardUser} />
-          {/* <Route path='/emailservice' exact component={AddEmail} />
-          <Route path='/addfestival' exact component={FestivalForm} /> */}
+          <Route path='/emailservice' exact component={AddEmail} />
+          <Route path='/addfestival' exact component={FestivalForm} />
           <Route path='/guide' component={Guide} />
           <Route path='/about' component={AboutUser} />
           <Route path='/contact' component={ContactUser} />
@@ -40,8 +43,10 @@ class UserApp extends Component {
           <Route path='/userhome' exact component={HomeUser} />
           <Route path='/mockTest' component={MockTest} />
           <Route path='/mock' component={Mock} />
-          {/* <Route path='/festivals' component={SuperAdminFestivalApi} />
-          <Route path='/emails' component={SuperAdminEmailAPI} /> */}
+          <Route path='/festivals' component={SuperAdminFestivalApi} />
+          <Route path='/emails' component={SuperAdminEmailAPI} />
+
+          <Route path="/myoffers" component={MyOffers}/>
 
 
 

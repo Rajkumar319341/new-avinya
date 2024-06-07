@@ -30,12 +30,28 @@ console.log("Fetched department:", fetchedDept);
 let fetchedPrivileges = null;
 
 if (sessiondetails !== null) {
+  if(sessiondetails.userType==="employee"){
   sessiondetails.privileges.forEach(privilege => {
     if (privilege.dept === fetchedDept) {
       fetchedPrivileges = privilege.privileges;
       console.log("Privileges for department", fetchedDept, ":", fetchedPrivileges);
     }
-  });
+  }); }
+  else if(sessiondetails.userType==="user"){
+    console.log("Privileges before setting user:", fetchedPrivileges);
+    // console.log("Dept before setting user:", fetchedDept);
+    fetchedPrivileges="1000";
+    // fetchedDept="TECHNICAL"
+    console.log("Privileges for user:", fetchedPrivileges);
+    // console.log("Privileges for user:", fetchedDept);
+    // this.function ()
+  } 
+  else if(sessiondetails.userType==="superadmin"){
+    console.log("Privileges before setting superadmin:", fetchedPrivileges);
+    fetchedPrivileges="1111";
+    console.log("Privileges for superadmin:", fetchedPrivileges);
+
+  }
 }
 
 
@@ -118,7 +134,11 @@ class EnrollmentsData extends Component {
   handleChangeRowsPerPage = (event) => {
     this.setState({ itemsPerPage: parseInt(event.target.value, 10) });
   };
-
+  function(){
+    this.props.history.push("/")
+  
+  }
+  
 
   constructor(props) {
     super(props);
@@ -361,7 +381,7 @@ class EnrollmentsData extends Component {
                             </Typography>
                           </TableCell>
                           <>
-                            {sessiondetails !== null && fetchedPrivileges || ( sessiondetails.userType==="superadmin" )&&(
+                            {sessiondetails !== null && fetchedPrivileges &&(
                               <>
                                 {(fetchedPrivileges === "1111" || fetchedPrivileges === "1110") && (
                                   <TableCell className={classes.tableCell}>
@@ -395,7 +415,7 @@ class EnrollmentsData extends Component {
                               <>
                                 {sessiondetails !== null && fetchedPrivileges && (
                                   <>
-                                    {fetchedPrivileges === "1111" && (
+                                    {fetchedPrivileges === "1111" || fetchedPrivileges==="1110" &&   (
                                         <StyledTableCell>
 
                                       <Button variant="contained" style={{ color: "greensuperAdminCoursesEnrolled" }} onClick={() => this.handleUpdate(task)}  >Update</Button>

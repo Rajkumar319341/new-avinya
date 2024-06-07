@@ -49,12 +49,20 @@ let Sidebar = [
       child: "",
    },
    {
+      title: "My Offers",
+      path: "/myoffers",
+      icon: <MdIcons.MdFestival />,
+      cName: "nav-text01",
+      child: "",
+   },
+   {
       title: "EmailService",
       path: "/emails",
       icon: <MdIcons.MdEmail />,
       cName: "nav-text01",
       child: "",
    },
+   
    {
       title: "Dashboard",
       path: "/",

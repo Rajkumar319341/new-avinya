@@ -45,7 +45,7 @@ if (sessioninfo.userType === "superadmin") {
 else if (sessioninfo.userType === "student") {
     ReactDOM.render(<StudentApp />, document.getElementById('root'));
 }
-else if(sessioninfo.userType==="User"){
+else if(sessioninfo.userType==="user"){
     ReactDOM.render(<UserApp />, document.getElementById('root'));
 }
 

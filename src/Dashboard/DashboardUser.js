@@ -149,11 +149,11 @@ const DashboardUser = () => {
   const fetchTotalAdminsCount = async () => {
     try {
       const url = APIData.api + `admins?org=${org}`;
-      console.log("Url:", url)
+      // console.log("Url:", url)
       const response = await fetch(url, { headers: APIData.headers });
-      console.log("response:", response)
+      // console.log("response:", response)
       const data = await response.json();
-      console.log("Data:", data)
+      // console.log("Data:", data)
       return data;
     } catch (error) {
       throw new Error("Failed to fetch total admins count");
@@ -163,11 +163,11 @@ const DashboardUser = () => {
   const fetchTotalUsersCount = async () => {
     try {
       const url = APIData.api + `users?org=${org}`;
-      console.log("Url:", url)
+      // console.log("Url:", url)
       const response = await fetch(url, { headers: APIData.headers });
-      console.log("response:", response)
+      // console.log("response:", response)
       const data = await response.json();
-      console.log("Data:", data)
+      // console.log("Data:", data)
       return data;
     } catch (error) {
       throw new Error("Failed to fetch total admins count");
