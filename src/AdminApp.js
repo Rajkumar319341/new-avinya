@@ -82,6 +82,7 @@ import ChangePassword from './Authentication/ChangePassword';
 import { InternalJob } from './InternalJobs/InternalJob';
 import { InternalJobApply } from './InternalJobs/InternalJobApply';
 import { InternalJobDetails } from './InternalJobs/InternalJobDetails';
+import { ReleaseStatus } from './InternalJobs/ReleaseStatus';
 
 
 class TechnicalApp extends Component {
@@ -175,6 +176,8 @@ class TechnicalApp extends Component {
             <Route path="/internal-job" component={InternalJob}/>
           <Route path="/job_id/:index" component={InternalJobDetails}/>
           <Route path="/internal-job-apply" component={InternalJobApply}/>
+
+          <Route path="/release-status" component={ReleaseStatus}/>
  
 
           <DashboardUser />

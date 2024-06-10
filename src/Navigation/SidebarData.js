@@ -55,6 +55,7 @@ let Sidebar = [
       cName: "nav-text01",
       child: "",
    },
+  
    {
       title: "EmailService",
       path: "/emails",
@@ -416,6 +417,13 @@ let TechSidebar = [
       title: "Internal Jobs",
       path: "/internal-job",
       icon: <MdIcons.MdDashboard />,
+      cName: "nav-text01",
+      child: "",
+   },
+   {
+      title: "Release Status",
+      path: "/release-status",
+      icon: <MdIcons.MdFestival />,
       cName: "nav-text01",
       child: "",
    },

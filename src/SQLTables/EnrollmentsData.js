@@ -28,27 +28,33 @@ const fetchedDept = localStorage.getItem("Depart Details");
 console.log("Fetched department:", fetchedDept);
 
 let fetchedPrivileges = null;
+let fetchedSupervisor=null;
 
 if (sessiondetails !== null) {
-  if(sessiondetails.userType==="employee"){
-  sessiondetails.privileges.forEach(privilege => {
-    if (privilege.dept === fetchedDept) {
-      fetchedPrivileges = privilege.privileges;
-      console.log("Privileges for department", fetchedDept, ":", fetchedPrivileges);
-    }
-  }); }
-  else if(sessiondetails.userType==="user"){
+  if (sessiondetails.userType === "employee") {
+    sessiondetails.privileges.forEach(privilege => {
+      if (privilege.dept === fetchedDept) {
+        fetchedPrivileges = privilege.privileges;
+        fetchedSupervisor=privilege.supervisor
+
+        console.log("Privileges for department", fetchedDept, ":", fetchedPrivileges);
+        console.log("Supervisor for department", fetchedDept, ":", fetchedSupervisor);
+
+      }
+    });
+  }
+  else if (sessiondetails.userType === "user") {
     console.log("Privileges before setting user:", fetchedPrivileges);
     // console.log("Dept before setting user:", fetchedDept);
-    fetchedPrivileges="1000";
+    fetchedPrivileges = "1000";
     // fetchedDept="TECHNICAL"
     console.log("Privileges for user:", fetchedPrivileges);
     // console.log("Privileges for user:", fetchedDept);
     // this.function ()
-  } 
-  else if(sessiondetails.userType==="superadmin"){
+  }
+  else if (sessiondetails.userType === "superadmin") {
     console.log("Privileges before setting superadmin:", fetchedPrivileges);
-    fetchedPrivileges="1111";
+    fetchedPrivileges = "1111";
     console.log("Privileges for superadmin:", fetchedPrivileges);
 
   }
@@ -134,11 +140,11 @@ class EnrollmentsData extends Component {
   handleChangeRowsPerPage = (event) => {
     this.setState({ itemsPerPage: parseInt(event.target.value, 10) });
   };
-  function(){
+  function() {
     this.props.history.push("/")
-  
+
   }
-  
+
 
   constructor(props) {
     super(props);
@@ -199,8 +205,12 @@ class EnrollmentsData extends Component {
       user_name: this.state.selectedTask.user_name,
       role: this.state.selectedTask.role,
       dept: this.state.selectedTask.dept,
-      supervisor: this.state.selectedTask.supervisor,
       user_phone_number: this.state.selectedTask.user_phone_number,
+      deptSupervisor:this.state.selectedTask.deptSupervisor,
+      emp_acceptance_status:'PENDING',
+      enrollmenttSupervisor:'',
+      prevDeptSupervisor:'',
+      release_status:'',
       org: org,
     }
     console.log("status form", form);
@@ -253,12 +263,12 @@ class EnrollmentsData extends Component {
     return (
 
       <Box mt={4} display="flex" justifyContent="center">
-                  <Box width="95%" border="2px solid black">
-                  <Paper className={classes.root} >
+        <Box width="95%" border="2px solid black">
+          <Paper className={classes.root} >
             <Box p={2} >
-          <Typography variant="h5" gutterBottom align="center" className={classes.enrollmentsHeader}>
-            ENROLLMENTS
-          </Typography>
+              <Typography variant="h5" gutterBottom align="center" className={classes.enrollmentsHeader}>
+                ENROLLMENTS
+              </Typography>
               {loading ? <Loading /> :
 
                 <div>
@@ -301,15 +311,15 @@ class EnrollmentsData extends Component {
                           {/* <IconButton style={{ color: "green", marginLeft: "10rem" }} onClick={() => this.handleUpdate(task)}>
                             <FaEdit />
                           </IconButton> */}
-                            {sessiondetails !== null && fetchedPrivileges && (
-                                  <>
-                                    {fetchedPrivileges === "1111" && (
-                                      <IconButton style={{ color: "green", marginLeft: "10rem" }} onClick={() => this.handleUpdate(task)}>
-                                      <FaEdit />
-                                    </IconButton>
-                                    )}
-                                  </>
-                                )}
+                          {sessiondetails !== null && fetchedPrivileges && (
+                            <>
+                              {fetchedPrivileges === "1111" && (
+                                <IconButton style={{ color: "green", marginLeft: "10rem" }} onClick={() => this.handleUpdate(task)}>
+                                  <FaEdit />
+                                </IconButton>
+                              )}
+                            </>
+                          )}
                         </Paper>
                       ))}
                     </Box>
@@ -381,7 +391,7 @@ class EnrollmentsData extends Component {
                             </Typography>
                           </TableCell>
                           <>
-                            {sessiondetails !== null && fetchedPrivileges &&(
+                            {sessiondetails !== null && fetchedPrivileges && (
                               <>
                                 {(fetchedPrivileges === "1111" || fetchedPrivileges === "1110") && (
                                   <TableCell className={classes.tableCell}>
@@ -412,19 +422,19 @@ class EnrollmentsData extends Component {
                             <StyledTableCell>{task.followup_datetime}</StyledTableCell>
                             <StyledTableCell>{task.enrolled_date}</StyledTableCell>
                             <StyledTableCell>{task.dept}</StyledTableCell>
-                              <>
-                                {sessiondetails !== null && fetchedPrivileges && (
-                                  <>
-                                    {fetchedPrivileges === "1111" || fetchedPrivileges==="1110" &&   (
-                                        <StyledTableCell>
+                            <>
+                              {sessiondetails !== null && fetchedPrivileges && (
+                                <>
+                                  {fetchedPrivileges === "1111" || fetchedPrivileges === "1110" && (
+                                    <StyledTableCell>
 
                                       <Button variant="contained" style={{ color: "greensuperAdminCoursesEnrolled" }} onClick={() => this.handleUpdate(task)}  >Update</Button>
-                                      </StyledTableCell>
+                                    </StyledTableCell>
 
-                                    )}
-                                  </>
-                                )}
-                              </>
+                                  )}
+                                </>
+                              )}
+                            </>
                           </StyledTableRow>
                         ))}
                       </TableBody>
@@ -461,6 +471,15 @@ class EnrollmentsData extends Component {
                     fullWidth
                     style={{ marginBottom: '10px' }}
                     onChange={(e) => this.setState({ selectedTask: { ...this.state.selectedTask, user_email: e.target.value } })}
+                  />
+                   <TextField
+                    label="Dept Supervisor"
+                    value={this.state.selectedTask ? this.state.selectedTask.deptSupervisor : ""}
+                    variant="outlined"
+                    InputProps={{ readOnly: true }}
+                    fullWidth
+                    style={{ marginBottom: '10px' }}
+                    onChange={(e) => this.setState({ selectedTask: { ...this.state.selectedTask, deptSupervisor: e.target.value } })}
                   />
                   <FormControl variant="outlined" fullWidth style={{ marginBottom: '10px' }}>
                     <InputLabel id="status-label">Status</InputLabel>

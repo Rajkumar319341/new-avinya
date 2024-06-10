@@ -23,5 +23,5 @@ user apply job
 dept supervisor- release (put call)
 ||
 
-accept - set dept supervisor
+accept - set dept supervisor done by enrollment supervisor , he assigns the dept supervisor
 
